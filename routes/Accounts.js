@@ -6,18 +6,21 @@ const task = require('../models/Tasks')
 
 // All Accounts Route
 router.get('/', async (req, res) => {
+  
   let query = account.find()
   const accounts = await query.exec()
   res.render('Accounts/index', {
-    accounts:accounts
+    accounts:accounts,
   });
 })
 
 // New Account Route
 router.get('/new', async (req, res) => {
+  let ER = ''
   const Apps = await applications.find()
   res.render('Accounts/new',{
-    Apps:Apps
+    Apps:Apps,
+    ER:ER
   });
 })
 router.get('/cal', async (req, res) => {
@@ -32,12 +35,19 @@ router.post('/', async (req, res) => {
       TimeZone: req.body.timezone
     })
     await Account.save();
-      res.redirect('account');
+      res.redirect('account',{
+      });
   
   } catch (error) {
-    res.redirect('account/new',{
-      error:error
-    });
+    let ER = error.name
+    if(error.name = 'ValidationError'){
+      ER = 'DSN is required'
+    }
+    
+    res.render('Accounts/new',{
+      ER:ER
+    })
+    //res.send(error.name+": "+error.message);
   }
   
 })
