@@ -20,16 +20,26 @@ router.get('/new', async (req, res) => {
     Apps:Apps
   });
 })
+router.get('/cal', async (req, res) => {
+  res.render('Accounts/cal');
+})
 
 // Create Account Route
 router.post('/', async (req, res) => {
-  const Account = new account({
-    DSN: req.body.DSN,
-    TimeZone: req.body.timezone
-  })
-  await Account.save();
-    res.redirect('account');
-
+  try {
+    const Account = new account({
+      DSN: req.body.DSN,
+      TimeZone: req.body.timezone
+    })
+    await Account.save();
+      res.redirect('account');
+  
+  } catch (error) {
+    res.redirect('account/new',{
+      error:error
+    });
+  }
+  
 })
 
 router.get('/:id/details', async (req, res) => {
