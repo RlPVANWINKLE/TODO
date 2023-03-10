@@ -1,0 +1,30 @@
+<h1 style="margin:auto; margin-top: 5%; padding:1%" class="title button2"><u><%= Account.DSN %></u></h1>
+<div class=" applications form" style="margin-left: 2%; width: 25%;">
+    <h1 class="textW"><u>Applications</u></h1>
+    <% Apps.forEach(app => {%>
+      <h2 class="textW"><%= app %></h2>
+    <%}) %>
+    <a href="/account/<%= acc %>/details/addApps" class="button">ADD APPLICATIONS</a>
+    
+</div>
+<div style="text-align: center; float:left; overflow-y: scroll; width: 60%; margin-left: 2%; scrollbar-width: thin;" class="form applications">
+    <h1 class="textW"><u>Tasks</u></h1>
+    <% for(let i = 0; i < tasks.length; i++){%>
+      <% if(tasks[i].Status == "Active"){%>
+        <span onclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>'" class="task textW" title="CLICK TO COMPLETE" ><h2 style="max-width: 75%; margin: auto;" class=""><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black; padding-bottom: 5%;"><%= tasks[i].Description %></h3></span><br><br>
+      <%} else{%>
+        <span style="text-decoration: line-through; text-decoration-color:#12232E;" ondblclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>/delete'" class="textW"><h2  title=" DBL CLICK TO DELETE" class="task textW" style="max-width: 75%; margin: auto;"><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black; padding-bottom: 5%;"><%= tasks[i].Description %></h3></span><br><br>
+      <%}%>
+      
+    <%} %>
+    <div style="position: sticky; bottom: -10px; background-color: #007cc7;">
+      <a href="/account/<%= acc %>/tasks" class="button2">ADD TASKS</a>
+    </div>
+
+    
+</div>
+
+<div style="margin:2%; width:91%;" class="applications form">
+  <iframe src="https://calendar.google.com/calendar/embed?height=350&wkst=1&bgcolor=%23ffffff&ctz=America%2FDenver&mode=WEEK&showNav=0&showTitle=0&showDate=1&showPrint=0&showTabs=0&showCalendars=1&src=MTYxNTdlNTdjNmM1Y2ZmMDFkNzc4ZWQzZDQyYjZjOTgzMjVmMzk2MGNhNjA1NDNhYmYzNjQ5YmI3MWIyMmM2OUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%236e0000" width="1200" height="500" frameborder="0" scrolling="no"></iframe>
+
+</div>

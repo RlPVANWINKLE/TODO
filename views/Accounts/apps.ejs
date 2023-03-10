@@ -1,0 +1,19 @@
+<div class="form">
+  <form action="/account/<%= Account.id %>?_method=PUT" method="POST">
+    <div> 
+      <label>Application <%= Account.Application1.length+1 %>:</label><select name="A1"> 
+        <% Apps.forEach(App => { %>
+          <option label="<%= App.Name %>" value="<%= App.Name %>"></option>
+          <%}) %>
+        </select>
+    </div><br><br>   
+  <a href="/account/<%= Account.id %>/details" class="button2">Back</a>
+  <button type="submit" class="button2">Create</button>
+</form>
+</div>
+<div class="form">
+  <h1>Current Applications</h1>
+    <% Account.Application1.forEach(application => {%>
+        <h2><%= application %></h2>
+    <%}) %>
+</div>

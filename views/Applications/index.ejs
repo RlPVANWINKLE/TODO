@@ -1,0 +1,8 @@
+<div style="text-align: center;">
+  <h1 class="">Application Types</h1>
+<% applications.forEach(application => { %>
+<div class="">
+  <h2><%= application.Name %></h2><a href="/application/<%=application.id%>/edit">EDIT</a>
+</div>
+<%}) %>
+</div>

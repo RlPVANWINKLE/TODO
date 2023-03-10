@@ -1,0 +1,7 @@
+<h2>Edit Application Name</h2>
+<form action="/application/<%= app.id %>?_method=PUT" method="POST">
+  <label> Updated Application Name</label>
+  <input type="text" name="name" value="<%= app.Name %>">
+  <a href="/application/">Cancel</a>
+  <button type="submit">Update</button>
+</form>

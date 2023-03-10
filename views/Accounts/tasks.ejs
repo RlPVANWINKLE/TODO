@@ -1,0 +1,9 @@
+<div class="form"><br>
+    <form action="/account/<%=ID%>/tasks/new?_method=PUT" method="post" >
+        <label class="align">Title:</label><input type="text" name="title"><br><br>
+        <label class="align">Description:</label><textarea name="desc" cols="21" rows="3" style="vertical-align: top;"></textarea><br><br>
+        <a href="/account/<%= ID %>/details" class="button2">Back</a>
+        <button type="submit" class="button2">Create</button>
+    </form>
+</div>
+

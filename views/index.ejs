@@ -1,0 +1,10 @@
+<div style="width: 50%; margin:auto; margin-top:2%;">
+    <h1><u> <b>Most 5 Recent Tasks</b></u></h1>
+    <%tasks.forEach(task => {%>
+        <div style="margin-bottom: 2%; border-bottom: 2px solid black;">
+            <h2><u><b><%=task.Title%></b></u> </h2>
+            <h3><%=task.Description%></h3>
+        </div>
+
+    <%})%>
+</div>
