@@ -9,7 +9,9 @@
   <style>
     ::-webkit-scrollbar {
       display: none;
-    }
+    };
+
+
   </style>
 </head>
 <body style="text-align: center;">
@@ -17,5 +19,13 @@
   <%- body %>
 </body>
 <script>
+      function show(first, second){
+        document.getElementById(first).style.visibility='visible'
+        document.getElementById(second).style.visibility='hidden'
+    }
+    // function hide(first, second){
+    //     document.getElementById(first).style.visibility='hidden'
+    //     document.getElementById(second).style.visibility='visible'
+    // }
 </script>
 </html>

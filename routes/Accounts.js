@@ -6,9 +6,25 @@ const task = require('../models/Tasks')
 
 // All Accounts Route
 router.get('/', async (req, res) => {
-  
-  let query = account.find()
-  const accounts = await query.exec()
+  let query = await account.find().sort({DSN: 1}); 
+  let accounts = query
+  let count = 0
+  for(let i = 0; i<accounts.length; i++){
+    for(let j =0; j<accounts[i].Tasks.length; j++){
+      let taskID = accounts[i].Tasks[j]._id;
+      let taskOBJ = await task.findById(taskID)
+      if(taskOBJ.Status == 'Active'){
+        count=count+1;
+      }
+    }
+    let ID = accounts[i]._id
+    let Account = await account.findById(ID)
+    Account.ActiveTasks=`${count}`
+    await Account.save();
+    count=0;
+  }
+  query = await account.find().sort({ActiveTasks: -1, DSN: 1})
+  accounts = query;
   res.render('Accounts/index', {
     accounts:accounts,
   });
@@ -34,16 +50,27 @@ router.post('/', async (req, res) => {
       DSN: req.body.DSN,
       TimeZone: req.body.timezone
     })
+    const KOCTask = new task({
+      Title: 'Kick off Call'
+    })
+    const PTask = new task({
+      Title: 'Account Manager',
+      Description: 'Add permit to account manager'
+    })
+    const appTask = new task({
+      Title: 'Add apps to account'
+    })
+    await KOCTask.save();
+    await PTask.save();
+    await appTask.save();
+    Account.Tasks.push(KOCTask.id,PTask.id,appTask.id);
     await Account.save();
-      res.redirect('account',{
-      });
-  
+      res.redirect('account')  
   } catch (error) {
     let ER = error.name
     if(error.name = 'ValidationError'){
       ER = 'DSN is required'
-    }
-    
+    }    
     res.render('Accounts/new',{
       ER:ER
     })
@@ -69,7 +96,6 @@ router.get('/:id/details', async (req, res) => {
     tasks:tasks,
     Account:Account
   });
-  console.log(tasks)
 })
 router.get('/:id/details/addApps', async (req, res) => {
   let ID = req.params.id
@@ -81,6 +107,11 @@ router.get('/:id/details/addApps', async (req, res) => {
     Account:Account
 
   })
+})
+router.get('/:id/delete', async (req, res) => {
+  let accountID = req.params.id
+  const deleted = await account.findByIdAndDelete(accountID)
+  res.redirect('/account')  
 })
 router.get('/:id/tasks', async (req, res) => {
   let ID = req.params.id
@@ -115,7 +146,6 @@ router.put('/:id', async (req, res) => {
   const Account = await account.findById(ID)
   Account.Application1.push(req.body.A1)
     const newAccount = await Account.save()
-    // res.redirect(`books/${newBook.id}`)
     res.redirect(`/account/${ID}/details/addApps`);
 })
 router.get('/:id/:task', async (req, res) => {
@@ -123,7 +153,7 @@ let taskId = req.params.task
 let ID = req.params.id
 const taskComplete = await task.findById(taskId)
 taskComplete.Status = 'Complete'
-taskComplete.save()
+await taskComplete.save()
 res.redirect(`/account/${ID}/details`)
 })
 router.get('/:id/:task/delete', async (req, res) => {

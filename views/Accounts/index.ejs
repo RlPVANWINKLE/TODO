@@ -2,8 +2,10 @@
   <div style="text-align: center;">
     <h1 class="textW title" style=""><u>Accounts</u></h1>
   <% accounts.forEach(account => { %>
+    <% let counter = 0%>
+    
   <div class="" style="">
-    <h2 class="buttonA" style="column-span: all;" ><a href="/account/<%= account.id %>/details" style="color: #EEFBFB; text-decoration: none;"><%= account.DSN %> - (<%= account.Tasks.length %>)</a></h2>
+    <h2 class="buttonA" style="column-span: all;" ><a href="/account/<%= account.id %>/details" style="color: #EEFBFB; text-decoration: none;"><%= account.DSN %> - (<%= account.ActiveTasks %>)</a></h2>
   </div>
   <%}) %>
   </div>

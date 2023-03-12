@@ -9,7 +9,13 @@ const AccountSchema = new mongoose.Schema({
     type: String
   },
   Application1: [{type:String, ref: 'Applications', default:''}],
-  Tasks:[{type:mongoose.Schema.Types.ObjectId, ref:'Tasks'}]
+
+  Tasks:[{type:mongoose.Schema.Types.ObjectId, ref:'Tasks'}],
+
+  ActiveTasks: {
+    type: String,
+    default: 'Hello World'
+  }
   // Tasks:[{type:String, ref:'Tasks', default:''}]
 })
 
