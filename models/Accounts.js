@@ -8,6 +8,30 @@ const AccountSchema = new mongoose.Schema({
   TimeZone:{
     type: String
   },
+  Contact1name:{
+    type: String,
+    default:'NA'
+  },
+  Contact1email:{
+    type: String,
+    default:'NA'
+  },
+  Contact2name:{
+    type: String,
+    default:'NA'
+  },
+  Contact2email:{
+    type: String,
+    default:'NA'
+  },
+  Contact3name:{
+    type: String,
+    default:'NA'
+  },
+  Contact3email:{
+    type: String,
+    default:'NA'
+  },
   Application1: [{type:String, ref: 'Applications', default:''}],
 
   Tasks:[{type:mongoose.Schema.Types.ObjectId, ref:'Tasks'}],

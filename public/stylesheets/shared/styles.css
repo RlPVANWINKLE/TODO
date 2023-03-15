@@ -3,7 +3,42 @@ body{
     background-color: #12232E;
 
 }
+.infocont{
+    margin: auto;
+    margin-top: 2%;
+    width: 40%;
+    display: none;
+    background-color: #007cc7;
+    padding: 2%;
+    border: 2PX SOLID #4DA8DA;
+    border-radius: 25px;
+    font-weight: bolder;
+    text-align: left;
+    color: white;
+}
+#open:hover{
+cursor: pointer;
+}
+#close:hover{
+cursor: pointer;
+}
 
+.mt-1{
+    margin-top: 1%;
+}
+
+.mt-2{
+    margin-top: 2%;
+}
+.mt-3{
+    margin-top: 3%;
+}
+.mt-4{
+    margin-top: 4%;
+}
+.mt-5{
+    margin-top: 5%;
+}
 .applications{
     /* display: flex; */
     float: left;
@@ -102,6 +137,7 @@ body{
     display: inline-block;
     width: 150px;
     text-align: left;
+    margin-left: 2%;
 }
 .textW{
     color: #EEFBFB;

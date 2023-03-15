@@ -1,4 +1,26 @@
 <h1 style="margin:auto; margin-top: 5%; padding:1%" class="title button2"><u><%= Account.DSN %></u></h1>
+<div class="form" id="accountdetails">
+  <h2 onclick="accountshow()" id="open" class="textW"><u> View Account details</u></h2>
+</div>
+<div class="infocont" id="account">  
+  <div onclick="accounthide()" id="close"><p style="color: white; font-size: 3vh;"><u>CLOSE</u></p> </div><br><br>
+  <form action="/account/<%= acc %>/details/edit?_method=PUT" method="POST" style="margin:auto">
+    <div>
+      <label class="align ">DSN:</label><input type="text" name="DSN" autofocus value=<%=Account.DSN%>>
+      <label class="align ">TimeZone:</label><input type="text" name="timezone" value=<%=Account.TimeZone%> ><br><br>
+      <label class="align ">Contact 1(Primary):</label><input type="text" name="Contact1name" value=<%=Account.Contact1name%>>
+      <label class="align ">Contact 1 Email:</label><input type="text" name="Contact1email" value=<%=Account.Contact1email%>><br><br>
+      <label class="align ">Contact 2 Name:</label><input type="text" name="Contact2name" value=<%=Account.Contact2name%>>
+      <label class="align ">Contact 2 Email:</label><input type="text" name="Contact2email" value=<%=Account.Contact2email%>><br><br>
+      <label class="align ">Contact 3 Name:</label><input type="text" name="Contact3name" value=<%=Account.Contact3name%>>
+      <label class="align ">Contact 3 Email:</label><input type="text" name="Contact3email" value=<%=Account.Contact3email%>><br><br>
+    </div><br><br>   
+  <button type="submit" class="button2" >Edit Account Details</button>
+</form>
+  <h2 style="text-align: center;"><u>Combined Emails</u></h2>
+  <h3 class="mt-5" style="text-align: center;"><%=Account.Contact1email%>; <%=Account.Contact2email%>; <%=Account.Contact3email%>;</h3>
+</div>
+
 <div class=" applications form" style="margin-left: 2%; width: 25%;">
     <h1 class="textW"><u>Applications</u></h1>
     <% Apps.forEach(app => {%>

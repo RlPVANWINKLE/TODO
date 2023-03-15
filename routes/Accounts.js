@@ -36,11 +36,24 @@ router.get('/new', async (req, res) => {
   const Apps = await applications.find()
   res.render('Accounts/new',{
     Apps:Apps,
-    ER:ER
+    ER:ER,
   });
 })
 router.get('/cal', async (req, res) => {
   res.render('Accounts/cal');
+})
+router.put('/:id/details/edit', async (req, res) => {
+  let Account = await account.findById(req.params.id);
+  Account.DSN = req.body.DSN;
+  Account.TimeZone = req.body.timezone;
+  Account.Contact1name = req.body.Contact1name;
+  Account.Contact1email = req.body.Contact1email;
+  Account.Contact2name = req.body.Contact2name;
+  Account.Contact2email = req.body.Contact2email;
+  Account.Contact3name = req.body.Contact3name;
+  Account.Contact3email = req.body.Contact3email;
+  await Account.save();
+  res.redirect(`/account/${Account.id}/details`)
 })
 
 // Create Account Route
@@ -48,7 +61,13 @@ router.post('/', async (req, res) => {
   try {
     const Account = new account({
       DSN: req.body.DSN,
-      TimeZone: req.body.timezone
+      TimeZone: req.body.timezone,
+      Contact1name: req.body.Contact1name,
+      Contact1email: req.body.Contact1email,
+      Contact2name: req.body.Contact2name,
+      Contact2email: req.body.Contact2email,
+      Contact2name: req.body.Contact2name,
+      Contact2email: req.body.Contact2email,
     })
     const KOCTask = new task({
       Title: 'Kick off Call'
