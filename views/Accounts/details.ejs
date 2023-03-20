@@ -34,14 +34,22 @@
     <h1 class="textW"><u>Tasks</u></h1>
     <% for(let i = 0; i < tasks.length; i++){%>
       <% if(tasks[i].Status == "Active"){%>
-        <span onclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>'" class="task textW" title="CLICK TO COMPLETE" ><h2 style="max-width: 75%; margin: auto;" class=""><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black; padding-bottom: 5%;"><%= tasks[i].Description %></h3></span><br><br>
+        <span class="task textW" title="CLICK TO COMPLETE" ><h2 style=" max-width: 75%; margin: auto;"><%= tasks[i].Title %>:</h2><h3><%= tasks[i].Description %></h3>
+          <div style="display:block; border-bottom: 3px solid black;  padding-bottom: 5%;">
+            <a href="/account/<%= acc %>/<%= tasks[i].id %>" class="button" style="margin-top: 2%; display: inline;">Complete</a>
+            <a href="/account/<%= acc %>/<%= tasks[i].id %>/delete" class="button" style="margin-top: 2%; display: inline;">Delete</a>
+        </div></span><br><br>
       <%} else{%>
-        <span ondblclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>/delete'" class="textW"><h2  title=" DBL CLICK TO DELETE" class="task textW" style="max-width: 75%; margin: auto; text-decoration: line-through; text-decoration-color:#12232E; text-decoration-thickness: 1vh;"><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black;  padding-bottom: 5%;"><%= tasks[i].Description %> <a href="/account/<%= acc %>/<%= tasks[i].id %>/active" class="button" style="margin-top: 2%;">Undo</a></h3></span><br><br>
+        <span class="task textW" title=" DBL CLICK TO DELETE"><h2 style="max-width: 75%; margin: auto; text-decoration: line-through; text-decoration-color:#12232E; text-decoration-thickness: .75vh;"><%= tasks[i].Title %>:</h2><h3><%= tasks[i].Description %>
+          <div style="display:block; border-bottom: 3px solid black;  padding-bottom: 5%;">
+          <a href="/account/<%= acc %>/<%= tasks[i].id %>/active" class="button" style="margin-top: 2%; display: inline;">Undo</a>
+          <a href="/account/<%= acc %>/<%= tasks[i].id %>/delete" class="button" style="margin-top: 2%; display: inline;">Delete</a>
+        </div> </h3></span><br><br>
       <%}%>
       
     <%} %>
-    <div style="position: sticky; bottom: -10px; background-color: #007cc7;">
-      <a href="/account/<%= acc %>/tasks" class="button2">ADD TASKS</a>
+    <div style="position: sticky; bottom: -8vh; background-color: #007cc7; height: 10vh; padding-top: 5vh;">
+      <a href="/account/<%= acc %>/tasks" class="button2" >ADD TASKS</a>
     </div>
 
     
