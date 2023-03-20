@@ -19,7 +19,7 @@
   <%- body %>
 </body>
 <script>
-      function show(first, second){
+    function show(first, second){
         document.getElementById(first).style.visibility='visible'
         document.getElementById(second).style.visibility='hidden'
     }
@@ -30,6 +30,10 @@
     function accounthide(){
       document.getElementById("account").style.display = 'none'
       document.getElementById("accountdetails").style.display = 'block'
+    }
+    function copy(){
+      let text = document.getElementById('emails')
+      navigator.clipboard.writeText(text.innerText)
     }
 </script>
 </html>

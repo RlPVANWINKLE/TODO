@@ -18,7 +18,8 @@
   <button type="submit" class="button2" >Edit Account Details</button>
 </form>
   <h2 style="text-align: center;"><u>Combined Emails</u></h2>
-  <h3 class="mt-5" style="text-align: center;"><%=Account.Contact1email%>; <%=Account.Contact2email%>; <%=Account.Contact3email%>;</h3>
+  <h3 class="mt-5" style="text-align: center;" id="emails"><%=Account.Contact1email%>; <%=Account.Contact2email%>; <%=Account.Contact3email%>;</h3>
+  <h2 onclick="copy()" class="button">Copy Emails</h2>
 </div>
 
 <div class=" applications form" style="margin-left: 2%; width: 25%;">

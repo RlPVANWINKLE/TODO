@@ -6,7 +6,7 @@ const task = require('../models/Tasks')
 
 // All Accounts Route
 router.get('/', async (req, res) => {
-  let query = await account.find().sort({DSN: 1}); 
+  let query = await account.find().sort({ActiveTasks: -1, DSN: 1}); 
   let accounts = query
   let count = 0
   for(let i = 0; i<accounts.length; i++){
@@ -181,8 +181,23 @@ router.get('/:id/:task/delete', async (req, res) => {
   const Account = await account.findById(ID)
   const ttbd = Account.Tasks.indexOf(taskId);
   Account.Tasks.splice(ttbd,1);
-  Account.save();
+  await task.findByIdAndDelete(taskId);
+  await Account.save();
   res.redirect(`/account/${ID}/details`)
+  })
+
+  router.get('/newWeek', async (req, res) => {
+    const Accounts = await account.find()
+    for(let i = 0; i < Accounts.length; i++){
+      const SumEmail = new task({
+        Title: 'Summary Email'
+      })
+      await SumEmail.save();
+      Accounts[i].Tasks.unshift(SumEmail.id);
+      await Accounts[i].save()
+      
+    }
+    res.redirect('/account/')
   })
 
 module.exports = router

@@ -62,6 +62,9 @@ cursor: pointer;
     border: 2px solid #4DA8DA;
     text-decoration: none;
 }
+.button:hover{
+    cursor: pointer;
+}
 .button2 {
     width:max-content;
     height:max-content;
