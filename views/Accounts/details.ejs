@@ -3,7 +3,7 @@
   <h2 onclick="accountshow()" id="open" class="textW"><u> View Account details</u></h2>
 </div> -->
 <div class="infocont" id="account">  
-  <div onclick="accounthide()" id="close"><p style="color: white; font-size: 3vh;"><u>CLOSE</u></p> </div><br><br>
+  <div onclick="accounthide()" id="close"=><p class="button2"><u>X</u></p> </div><br><br>
   <form action="/account/<%= acc %>/details/edit?_method=PUT" method="POST" style="margin:auto">
     <div>
       <label class="align ">DSN:</label><input type="text" name="DSN" autofocus value=<%=Account.DSN%>>
