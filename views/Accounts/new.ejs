@@ -10,7 +10,11 @@
       <label class="align ">Contact 1 - Email:</label><input type="text" name="Contact2email" ><br><br>
       <label class="align ">Contact 3 - Name:</label><input type="text" name="Contact3name" >
       <label class="align ">Contact 1 - Email:</label><input type="text" name="Contact3email" ><br><br>
-      <h3 style="color:orange;"><%=ER%></h3>
+      <% if(ER == 'Success'){ %>
+      <h3 style="color:greenyellow;"><%=ER%></h3>
+        <%} else{%>
+          <h3 style="color:maroon;"><%=ER%></h3>
+      <%}%>
     </div><br><br>   
 
   <a href="/account/" class="button2">Cancel</a>

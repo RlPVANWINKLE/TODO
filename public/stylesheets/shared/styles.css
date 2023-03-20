@@ -78,6 +78,9 @@ cursor: pointer;
     border: 2px solid #4DA8DA;
     text-decoration: none;
 }
+.button2:hover{
+    cursor: pointer;
+}
 .Hbutton2 {
     display:inline-block;
     margin: auto;

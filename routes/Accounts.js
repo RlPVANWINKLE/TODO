@@ -84,7 +84,10 @@ router.post('/', async (req, res) => {
     await appTask.save();
     Account.Tasks.push(KOCTask.id,PTask.id,appTask.id);
     await Account.save();
-      res.redirect('account')  
+    let ER = 'Success'
+    res.render('Accounts/new',{
+      ER:ER
+    }) 
   } catch (error) {
     let ER = error.name
     if(error.name = 'ValidationError'){
@@ -175,6 +178,14 @@ taskComplete.Status = 'Complete'
 await taskComplete.save()
 res.redirect(`/account/${ID}/details`)
 })
+router.get('/:id/:task/active', async (req, res) => {
+  let taskId = req.params.task
+  let ID = req.params.id
+  const taskComplete = await task.findById(taskId)
+  taskComplete.Status = 'Active'
+  await taskComplete.save()
+  res.redirect(`/account/${ID}/details`)
+  })
 router.get('/:id/:task/delete', async (req, res) => {
   let taskId = req.params.task
   let ID = req.params.id

@@ -1,7 +1,7 @@
-<h1 style="margin:auto; margin-top: 5%; padding:1%" class="title button2"><u><%= Account.DSN %></u></h1>
-<div class="form" id="accountdetails">
+<h1 style="margin:auto; margin-top: 5%; padding:1%" class="title button2" onclick="accountshow()"><u><%= Account.DSN %></u></h1>
+<!-- <div class="form" id="accountdetails">
   <h2 onclick="accountshow()" id="open" class="textW"><u> View Account details</u></h2>
-</div>
+</div> -->
 <div class="infocont" id="account">  
   <div onclick="accounthide()" id="close"><p style="color: white; font-size: 3vh;"><u>CLOSE</u></p> </div><br><br>
   <form action="/account/<%= acc %>/details/edit?_method=PUT" method="POST" style="margin:auto">
@@ -36,7 +36,7 @@
       <% if(tasks[i].Status == "Active"){%>
         <span onclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>'" class="task textW" title="CLICK TO COMPLETE" ><h2 style="max-width: 75%; margin: auto;" class=""><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black; padding-bottom: 5%;"><%= tasks[i].Description %></h3></span><br><br>
       <%} else{%>
-        <span style="text-decoration: line-through; text-decoration-color:#12232E;" ondblclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>/delete'" class="textW"><h2  title=" DBL CLICK TO DELETE" class="task textW" style="max-width: 75%; margin: auto;"><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black; padding-bottom: 5%;"><%= tasks[i].Description %></h3></span><br><br>
+        <span ondblclick="window.location='/account/<%= acc %>/<%= tasks[i].id %>/delete'" class="textW"><h2  title=" DBL CLICK TO DELETE" class="task textW" style="max-width: 75%; margin: auto; text-decoration: line-through; text-decoration-color:#12232E; text-decoration-thickness: 1vh;"><%= tasks[i].Title %>:</h2><h3 style="border-bottom: 3px solid black;  padding-bottom: 5%;"><%= tasks[i].Description %> <a href="/account/<%= acc %>/<%= tasks[i].id %>/active" class="button" style="margin-top: 2%;">Undo</a></h3></span><br><br>
       <%}%>
       
     <%} %>
